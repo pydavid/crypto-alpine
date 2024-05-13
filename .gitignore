@@ -1,0 +1,9 @@
+*.pyc
+*.vscode
+*.swp
+Pipfile.lock
+Pipfile
+__pycache__
+/dist/
+/build/
+crypto_alpine.egg-info/
