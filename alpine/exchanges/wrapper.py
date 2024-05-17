@@ -122,3 +122,11 @@ class Wrapper:
         :rtype: None
         """
         return self.exchange.close_position(symbol, position)
+
+    def get_account_details(self):
+        """
+        Get margin and equity details about the account.
+        :returns: The account details.
+        :rtype: dict
+        """
+        return self.exchange.get_account_details()

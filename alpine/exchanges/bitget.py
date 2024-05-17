@@ -264,10 +264,25 @@ class Bitget(Abstract):
         product_type = "USDT-FUTURES"
         return self.request(
             "POST",
-            "/api/v2/mix/market/symbol-price",
+            "/api/v2/mix/order/close-positions",
             {
                 "symbol": symbol,
                 "holdSide": position,
+                "productType": product_type,
+            },
+        )["data"]
+
+    def get_account_details(self):
+        """
+        Get margin and equity details about the account.
+        :returns: The account details.
+        :rtype: dict
+        """
+        product_type = "USDT-FUTURES"
+        return self.request(
+            "GET",
+            "/api/v2/mix/account/accounts",
+            {
                 "productType": product_type,
             },
         )["data"]

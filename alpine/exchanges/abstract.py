@@ -35,3 +35,7 @@ class Abstract(abc.ABC):
         self, position, symbol, price, amount, margin_coin, take_profit, stop_loss
     ):
         raise NotImplementedError
+
+    @abc.abstractmethod
+    def get_account_details(self):
+        raise NotImplementedError
