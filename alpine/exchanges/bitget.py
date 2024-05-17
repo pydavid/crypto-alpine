@@ -29,7 +29,7 @@ class Bitget(Abstract):
         else:
             pre_hash = f"{timestamp}{method}{path}?{urllib.parse.urlencode(params)}"
         mac = hmac.new(
-            bytes(os.environ.get("API_SECRET_KEY"), encoding="utf8"),
+            bytes(self.secret_key, encoding="utf8"),
             bytes(pre_hash, encoding="utf-8"),
             digestmod="sha256",
         )
@@ -52,10 +52,10 @@ class Bitget(Abstract):
             dict(sorted(params.items())) if params else None
         )  # We need to sort the dictionnary ASC
         headers = {
-            "ACCESS-KEY": os.environ.get("API_ACCESS_KEY"),
+            "ACCESS-KEY": self.access_key,
             "ACCESS-SIGN": self._signature(timestamp, method, path, params),
             "ACCESS-TIMESTAMP": str(timestamp),
-            "ACCESS-PASSPHRASE": os.environ.get("API_PASSPHRASE"),
+            "ACCESS-PASSPHRASE": self.passphrase,
             "locale": "en-US",
         }
 

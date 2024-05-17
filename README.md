@@ -10,7 +10,7 @@ pip install -U crypto-alpine
 
 ## Documentation
 
-1. Set environment variables
+1. Set environment variables (optional)
 
 ```
 export API_SECRET_KEY=xxx
@@ -24,6 +24,14 @@ export API_PASSPHRASE=zzz
 from alpine.exchanges import Wrapper
 
 w = Wrapper('bitget')
+```
+
+Note that if you don't want to use enviroment variables (if you wish to use the library within your code), you can define them during the initialization:
+
+```
+from alpine.exchanges import Wrapper
+
+w = Wrapper('bitget', <access_key>, <secret_key>, <passphrase>)
 ```
 
 3. Set a leverage

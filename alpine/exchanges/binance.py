@@ -18,7 +18,7 @@ class Binance(Abstract):
          :type params: dict
         """
         return hmac.new(
-            os.environ.get("API_SECRET_KEY").encode("utf-8"),
+            self.secret_key.encode("utf-8"),
             params.encode("utf-8"),
             hashlib.sha256,
         ).hexdigest()
@@ -40,7 +40,7 @@ class Binance(Abstract):
             "params": path_query,
         }
         headers = {
-            "X-MBX-APIKEY": os.environ.get("API_ACCESS_KEY"),
+            "X-MBX-APIKEY": self.access_key,
         }
         r = requests.request(
             method, f"{self.API_ENDPOINT}{path}", json=payload, headers=headers

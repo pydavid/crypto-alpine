@@ -1,13 +1,25 @@
 import importlib
+import os
 
 
 class Wrapper:
-    def __init__(self, exchange_name):
+    def __init__(
+        self, exchange_name, access_key=None, secret_key=None, passphrase=None
+    ):
         """
         :param exchange_name: The exchange name to use.
         :type exchange_name: str
+        :param access_key: Access key to connect to the API.
+        :type access_key: None, str
+        :param secret_key: Secret key to connect to the API.
+        :type secret_key: None, str
+        :param passphrase: Passphrase to connect to the API.
+        :type passphrase: None, str
         """
         self.exchange_name = exchange_name
+        self.access_key = access_key or os.environ.get("API_ACCESS_KEY")
+        self.secret_key = secret_key or os.environ.get("API_SECRET_KEY")
+        self.passphrase = passphrase or os.environ.get("API_PASSPHRASE")
         module = importlib.import_module(f"alpine.exchanges.{exchange_name}")
         self.exchange = getattr(module, exchange_name.capitalize())()
 
