@@ -110,3 +110,15 @@ class Wrapper:
         :rtype: dict
         """
         return self.exchange.get_historical_position(symbol, margin_coin, limit)
+
+    def close_position(self, symbol, position):
+        """
+        Close the current position of the given the symbol.
+        :param symbol: symbol to close the current position.
+        :type symbol: str
+        :param position: Position's direction.
+        :type position: str
+        :returns: None
+        :rtype: None
+        """
+        return self.exchange.close_position(symbol, position)

@@ -23,6 +23,10 @@ class Abstract(abc.ABC):
         raise NotImplementedError
 
     @abc.abstractmethod
+    def close_position(self, symbol, position):
+        raise NotImplementedError
+
+    @abc.abstractmethod
     def get_historical_position(self, symbol, margin_coin, limit):
         raise NotImplementedError
 

@@ -136,8 +136,8 @@ class Bitget(Abstract):
                 "side": side,
                 "tradeSide": trade_side,
                 "orderType": "limit" if price else "market",
-                # "presetStopSurplusPrice": take_profit,
-                # "presetStopLossPrice": stop_loss,
+                "presetStopSurplusPrice": take_profit,
+                "presetStopLossPrice": stop_loss,
             },
         )["data"]["orderId"]
 
@@ -250,3 +250,24 @@ class Bitget(Abstract):
             },
         )["data"]
         return float(result[0][index])
+
+    def close_position(self, symbol, position):
+        """
+        Close the current position of the given the symbol.
+        :param symbol: symbol to close the current position.
+        :type symbol: str
+        :param position: Position's direction.
+        :type position: str
+        :returns: None
+        :rtype: None
+        """
+        product_type = "USDT-FUTURES"
+        return self.request(
+            "POST",
+            "/api/v2/mix/market/symbol-price",
+            {
+                "symbol": symbol,
+                "holdSide": position,
+                "productType": product_type,
+            },
+        )["data"]

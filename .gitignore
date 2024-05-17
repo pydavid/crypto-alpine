@@ -1,5 +1,6 @@
 *.pyc
 *.vscode
+*.code-workspace
 *.swp
 Pipfile.lock
 Pipfile
