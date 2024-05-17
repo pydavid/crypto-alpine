@@ -1,10 +1,8 @@
 import base64
 import hmac
 import json
-import os
 import time
 import requests
-import sys
 import urllib.parse
 from . import Abstract
 
@@ -67,7 +65,7 @@ class Bitget(Abstract):
             r.raise_for_status()
         except requests.exceptions.HTTPError:
             print(f"[{method}]{self.API_ENDPOINT}{path}: {r.json()}")
-            sys.exit(1)
+            raise
         return r.json()
 
     def set_leverage(self, value, position, symbol, margin_coin):

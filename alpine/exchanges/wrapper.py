@@ -17,11 +17,11 @@ class Wrapper:
         :type passphrase: None, str
         """
         self.exchange_name = exchange_name
-        self.access_key = access_key or os.environ.get("API_ACCESS_KEY")
-        self.secret_key = secret_key or os.environ.get("API_SECRET_KEY")
-        self.passphrase = passphrase or os.environ.get("API_PASSPHRASE")
         module = importlib.import_module(f"alpine.exchanges.{exchange_name}")
         self.exchange = getattr(module, exchange_name.capitalize())()
+        self.exchange.access_key = access_key or os.environ.get("API_ACCESS_KEY")
+        self.exchange.secret_key = secret_key or os.environ.get("API_SECRET_KEY")
+        self.exchange.passphrase = passphrase or os.environ.get("API_PASSPHRASE")
 
     def set_leverage(self, value, position, symbol, margin_coin):
         """

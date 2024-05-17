@@ -1,8 +1,6 @@
 import hashlib
 import hmac
-import os
 import requests
-import sys
 import time
 import urllib.parse
 from . import Abstract
@@ -49,7 +47,7 @@ class Binance(Abstract):
             r.raise_for_status()
         except requests.exceptions.HTTPError:
             print(r.text)
-            sys.exit(1)
+            raise
 
     def set_leverage(self, value, position, symbol):
         """
